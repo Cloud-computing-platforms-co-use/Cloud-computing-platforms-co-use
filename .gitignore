@@ -1,0 +1,10 @@
+# Raw survey data (download from official survey pages)
+data/raw/*
+!data/raw/.gitkeep
+*.zip
+# Local runtime and notebook checkpoint files
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+.env
+.DS_Store

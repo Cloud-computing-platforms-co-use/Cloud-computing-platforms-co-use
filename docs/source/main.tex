@@ -1,0 +1,328 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{color} 
+
+\title{Cloud computing platforms co-use}
+\author{ }
+
+
+\usepackage{xcolor}
+\definecolor{mygreen}{HTML}{15803D}
+%----------------------------------
+% Color codes:
+% Nuha: blue
+% Faiqa: red
+% Haitham: green
+%----------------------------------
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+%
+%Haitham
+%background (if needed)
+%motivation: state the fact with ref(3-5)
+%why ppl use 2+ cloud platforms (2-3 reasons)
+%examples
+
+%Faiqa
+%contribution:
+%in this work,
+%what, tool, RQs, data source (ref)
+
+%Nuha
+%paper structure
+%first, we will introduce related work, then The rest of this paper is organized as follows. Section~2 reviews related work, covering studies on cloud platform usage, cloud service connectivity, and network analysis of technological ecosystems. Section~3 describes our method, including the dataset and the network metrics used in the analysis.
+
+%
+
+
+{\color{mygreen} 
+
+Cloud computing has evolved into an ecosystem involving multiple providers, users, and services. This ecosystem also includes technical challenges, security issues, and organizational concerns. Martens et al. [3] describe these different components and highlight the role of major cloud providers such as Amazon, Microsoft, and Google.
+
+The use of multiple cloud providers is common. The O'Reilly Cloud Adoption in 2020 survey [4] found that 54\% of its 1,283 respondents used more than one cloud provider. The SANS 2023 Multicloud Survey [5], which targeted cloud users in organizations using multiple providers, included 245 respondents, of whom 86\% reported using multiple cloud service providers. These findings show that cloud platforms are often used together rather than as completely separate alternatives.
+
+Organizations may use multiple cloud providers for several reasons. The SANS survey [5] identifies mergers and acquisitions, business continuity, and access to specialized or best-of-breed services as important drivers of multicloud adoption. Using multiple providers can allow organizations to benefit from different services, reduce dependence on a single cloud environment, and maintain continuity when problems occur with one provider.
+
+For example, a company using AWS may acquire another organization that already depends on Azure, resulting in both platforms continuing to be used. In another case, an organization may use one provider for its main infrastructure while using another provider for a specialized service that better fits a particular requirement. Multiple providers may also be used so that workloads or services are not completely dependent on one cloud environment.
+
+Because cloud platforms are often used together, looking only at the popularity of each platform does not show the full picture. Ghimire and Gupta [1] studied programming language co-usage on Stack Overflow by examining relationships between languages, identifying central languages, and detecting communities. Our project investigates cloud-platform co-use using the 2024 Stack Overflow Developer Survey [2], with the aim of understanding which platforms respondents report using together and what patterns can be observed in their usage.
+}
+
+{\color{blue} Network analysis can help explain how technologies are used together. Ghimire and Gupta [1] used it, together with other methods, to study programming language co-usage on Stack Overflow. They examined connections between languages, identified central languages, and detected groups of related languages. Our project applies a similar approach to cloud platforms using the 2024 Stack Overflow Developer Survey [2]. It examines which platforms respondents report using together and identifies central platforms and communities within the co-use network.}
+
+
+\section{Related Work}
+{\color{blue} Ghimire and Gupta [1] analysed programming language co-usage using Stack Overflow questions and answers. After filtering, their dataset included 435,803 users and 186 programming languages. They constructed a weighted, undirected network, where each node represented a language and each edge connected two languages found in the same user's activity. The edge weight represented the number of users associated with both languages. The authors used FP-Growth to identify frequent language combinations, Latent Dirichlet Allocation (LDA) to identify developer profiles, and the Louvain algorithm to detect communities. Their analysis identified three main communities: web and enterprise development, the Apple ecosystem, and systems and scientific programming. Java had the highest degree, while JavaScript had the highest total edge weight. Our project draws on their network construction and analysis methods to examine cloud-platform co-use. However, our data come from survey responses about platform use rather than language tags in questions and answers.}
+\newpage
+
+
+\subsection{Cloud Platform Usage Analysis}
+\begin{itemize}
+{\color{mygreen} 
+
+Previous studies have examined cloud-platform adoption and the broader cloud computing ecosystem. Martens et al. [3] used quantitative content analysis of 485 academic and practitioner-oriented publications to understand the structure of the cloud computing ecosystem. Their analysis identified several important components, including cloud providers, users, services, technical issues, security, and government and compliance concerns. Major providers such as Amazon, Microsoft, and Google also appeared prominently in practitioner-oriented discussions. This study provides a broad view of the cloud ecosystem, but it focuses on how cloud computing is represented in research and practitioner literature rather than on direct measurements of platform co-use.
+\\\\
+More direct evidence of cloud-platform adoption is provided by industry surveys. The O'Reilly \textit{Cloud Adoption in 2020} survey [4] collected responses from 1,283 participants and found that 54\% used more than one cloud provider. AWS was used by approximately 67\% of respondents, followed by Microsoft Azure at 48\% and Google Cloud Platform at 32\%. Among respondents using at least two cloud providers, 93\% included AWS as one of their providers. These results provide evidence that major cloud platforms are frequently used alongside other providers rather than only as independent alternatives.
+\\\\
+More recent evidence is provided by the SANS 2023 Multicloud Survey [5]. The survey included 245 respondents and specifically targeted cloud users whose organizations used more than one cloud service provider; 86\% of the respondents reported using multiple providers. Google Cloud and Azure were each used by 62.8\% of respondents, while AWS was used by 54.3\%. For compute workloads, only 3\% reported using AWS exclusively, while Azure and Google Cloud were each used exclusively by 1\% of respondents. The survey also found that 82\% of respondents reported that their organizations run identical workloads in multiple clouds either often or sometimes.
+\\\\
+These studies show that multi-provider cloud use is common in the surveyed populations and provide useful information about the adoption and popularity of individual cloud platforms. However, they mainly present provider usage as percentages or general multicloud adoption rates. They do not directly model the relationships between cloud platforms to identify which specific platforms are frequently used together, which platforms occupy central positions, or whether groups of platforms form distinct co-use communities.
+
+\newpage
+\subsection {Network Analysis of Technological Ecosystems}
+\begin{itemize}
+{\color{red}
+Guercio et al. [6] applied complex network analysis to investigate the structure and collaboration patterns within the Eclipse software ecosystem. Using data from the Eclipse version control system, the authors constructed networks representing relationships between developers and projects. Their findings demonstrated that network analysis can reveal collaboration structures ancentresify influential contributors within software ecosystems. 
+\\\\
+Similarly, Hou et al. [7] investigated the detection of communities in software ecosystems considering the intensity of cooperation between developers. The authors proposed the ABDCI algorithm, which incorporates topological and interaction-related properties to identify communthis project constructs a weighted network of cloud platforms based on respondents' simultaneous use of them intrated improvements in the identification of community structures compared to conventional methods.
+\\\\
+In contrast, Fabian et al. [7] addressed the problem of cloud service availability and network reachability, arguing that previous research had mainly focused on redundancy and connectivity within individual cloud data centers while paying less attention to how cloud service providers (CSPs) are connected to the broader Internet infrastructure. 
+
+\\\\
+Although these studies demonstrate the effectiveness of network analysis and community detection in software ecosystems, they primarily focus on developer collaboration rather than technology co-use. In contrast, the present project constructs a weighted network of cloud platforms based on their simultaneous use by respondents to the Stack Overflow Developer Survey, aiming to identify central platforms, strong co-use relationships, and communities within the cloud ecosystem.
+3.1 Dataset Description and Data Source
+
+\end{itemize}
+
+
+\subsection{Network Analysis of Technological Ecosystems}
+\begin{itemize}
+\item Ghimire, B., & Gupta, N. (2026). Programming Language Co-Usage Patterns on Stack Overflow: Analysis of the Developer Ecosystem. arXiv preprint arXiv:2604.12123.
+
+\item Guercio, H., Stroele, V., David, J. M. N., Braga, R., \& Campos, F. (2018, May). Complex network analysis in a software ecosystem: Studying the eclipse community. In 2018 IEEE 22nd International Conference on Computer Supported Cooperative Work in Design ((CSCWD)) (pp. 618-623). IEEE.
+
+\item Hou, T., Yao, X., & Gong, D. (2021). Community detection in software ecosystem by comprehensively evaluating developer cooperation intensity. Information and Software Technology, 130, 106451.
+
+\end{itemize}
+
+
+
+
+
+\section{Method}
+
+our graph is weighted and undirected 
+
+Faiqa
+\subsection{Dataset}
+{\color{red}
+3.1 Dataset Description and Data Source
+\\\\
+This study uses the Stack Overflow Annual Developer Survey 2024 [2], which provides information on developers' backgrounds, professional experience, and technology use. The survey includes questions on programming languages, development tools, cloud platforms, and other technologies respondents use. This study focuses specifically on the 2024 survey data to investigate cloud platform co-usage within the developer ecosystem.
+\\\\
+The analysis primarily uses the `PlatformHaveWorkedWith` variable, which records the platforms respondents reported using during the previous year. This variable lets respondents select multiple platforms, making it suitable for examining relationships between technologies rather than individual platform popularity. Each respondent's selection therefore indicates which cloud platforms are reported together.
+\\\\
+For this study, we transform the selected platform responses into a structured representation of cloud platform usage. We treat each platform as a distinct technology and identify pairs of platforms selected by the same respondent. We calculate each pair's frequency by counting respondents who reported using both platforms.
+\\\\
+The resulting co-usage data provide the foundation for constructing a weighted, undirected network. In this network, nodes represent cloud platforms, edges indicate reported joint usage, and edge weights represent co-usage frequencies. This representation supports further analysis of platform centrality, strong co-usage relationships, and communities of cloud platforms that tend to be used together.
+\\\\
+Contribution:
+
+In this work, we investigate cloud platform co-usage patterns among developers using the 2024 Stack Overflow Developer Survey. Unlike previous studies that primarily examine individual cloud platform adoption or infrastructure connectivity, this project focuses on relationships between cloud platforms based on their reported joint usage.
+\\\\
+We construct a weighted, undirected network where nodes represent cloud platforms, edges represent co-usage relationships, and edge weights indicate how many developers reported using both platforms.
+\\\\
+Using network analysis techniques, we examine platform centrality, identify frequently co-used cloud platforms, and detect communities of platforms that tend to be used together. This approach offers a network-based view of the cloud technology ecosystem and reveals patterns that individual platform usage statistics alone cannot capture.
+\\\\
+
+Research Questions (RQs)
+The project description specifies four research questions.
+\\\\
+RQ1: Which cloud platforms occupy the most central positions in the co-use network?
+Identify influential cloud platforms using centrality measures such as Degree, Strength, and Betweenness Centrality.
+\\\\
+RQ2: Which pairs of cloud platforms are most frequently used together?
+Measure the frequency of joint usage between cloud platform pairs.
+\\\\
+RQ3: Are there distinct communities of platforms that tend to be used together?
+Apply Community Detection techniques, such as Louvain, to identify clusters of related cloud platforms.
+\\\\
+RQ4: How does the structure of the cloud platform co-use ecosystem evolve over time?
+Investigate changes in co-usage relationships across different periods.
+\\\\
+Tools and Techniques
+\\\\
+This study uses Python as the primary programming language for data preprocessing, cloud platform co-usage analysis, and network construction. The analysis is conducted in Google Colab, which provides a cloud-based environment for executing Python code and organizing the experimental workflow.
+\\\\
+We use the Pandas library to process the Stack Overflow Developer Survey 2024 dataset, handle missing responses, and extract cloud platform information from the `PlatformHaveWorkedWith` variable. The Python `itertools` and `collections` modules are used to generate unique platform pairs and calculate their co-usage frequencies. The resulting data are exported as a CSV file for subsequent network construction.
+\\\\
+NetworkX constructs a weighted, undirected graph where nodes represent cloud platforms, edges indicate co-usage relationships, and edge weights reflect the number of respondents reporting both platforms. We apply network analysis techniques, including degree centrality, weighted degree (strength), and betweenness centrality, to identify structurally important platforms.
+\\\\
+We also use the Louvain community detection algorithm to identify groups of cloud platforms with stronger co-usage relationships. Finally, Matplotlib and NetworkX are used to visualize the network structure, platform connectivity, and detected communities.}
+\\\\
+
+{\color{black}
+Haitham
+\subsection{Network Metrics}
+%- community
+%- centrality
+%- shprtest path metrics
+
+%what each means in this context 
+{\color{mygreen} 
+Network metrics provide quantitative measures for examining the structure of a network and the roles of individual nodes within it. In this study, cloud platforms are represented as nodes, while relationships between platforms represent their reported co-use by respondents. The network can be examined as either unweighted, where an edge only indicates that two platforms are used together, or weighted, where the edge weight represents the number of respondents who reported using both platforms [8]. Considering both representations allows the analysis to distinguish between the existence of a relationship and the strength of that relationship. Network metrics can then be used to examine how cloud platforms are connected, identify platforms that occupy important positions in the network, and explore broader structural patterns in cloud-platform co-use. The analysis considers three main aspects: centrality, community structure, and shortest-path metrics.
+
+Centrality measures are used to identify nodes that occupy important positions within a network [9]. However, importance can have different meanings depending on the metric used. A node may be considered central because it is connected to many other nodes, because its connections are particularly strong, or because it connects different parts of the network. In this study, centrality can therefore help describe the role of each cloud platform within the co-use network.
+\\\\
+\subsubsection{Centrality Measures}
+
+One of the simplest centrality measures is degree centrality, which represents the number of other nodes directly connected to a given node [9]. For a node $i$, normalized degree centrality can be expressed as
+
+\[
+C_D(i) = \frac{k_i}{n-1},
+\]
+
+where $k_i$ is the number of nodes connected to node $i$ and $n$ is the total number of nodes in the network. In the context of this study, a cloud platform with high degree centrality is reported together with many different cloud platforms. This indicates a broad range of co-use relationships.
+
+Because the network can also include edge weights, weighted degree, also referred to as node strength, can be used to consider the intensity of these relationships [8]. The strength of node $i$ is defined as
+
+\[
+s_i = \sum_j w_{ij},
+\]
+
+where $w_{ij}$ represents the weight of the connection between nodes $i$ and $j$. In this study, the edge weight represents the number of respondents who reported using both cloud platforms. A platform with high strength therefore has a large amount of total co-use across its connections, even if it is not connected to the largest number of different platforms.
+
+Betweenness centrality provides another view of a node's position in the network. It measures how often a node lies on the shortest paths between other pairs of nodes [8] and is defined as
+
+\[
+C_B(v) =
+\sum_{s \neq v \neq t}
+\frac{\sigma_{st}(v)}{\sigma_{st}},
+\]
+
+where $\sigma_{st}$ is the number of shortest paths between nodes $s$ and $t$, and $\sigma_{st}(v)$ is the number of those paths that pass through node $v$. In the cloud-platform co-use network, a platform with high betweenness centrality may act as a bridge between different groups of platforms.
+
+Closeness centrality measures how close a node is to all other nodes in the network [9]. It can be expressed as
+
+\[
+C_C(i) =
+\frac{n-1}{\sum_{j \neq i} d(i,j)},
+\]
+
+where $d(i,j)$ is the shortest-path distance between nodes $i$ and $j$. In this study, a platform with high closeness centrality is positioned relatively close to the rest of the cloud-platform network, meaning that other platforms can be reached through relatively few intermediate connections.
+
+Together, these measures provide different views of platform centrality. Degree centrality describes the breadth of a platform's connections, weighted degree reflects the overall strength of its co-use relationships, betweenness identifies platforms that may connect different parts of the ecosystem, and closeness describes how centrally positioned a platform is within the overall network.
+\subsubsection{Community Detection}
+
+Community detection is used to identify groups of nodes that are more strongly connected to each other than to the rest of the network [10]. In this study, communities can help reveal groups of cloud platforms that respondents tend to report using together.
+
+The network can be analysed using community-detection methods that consider the pattern of connections between platforms. In a weighted network, the strength of each relationship can also be considered, where the edge weight represents the number of respondents who reported using both platforms. This allows the analysis to distinguish between weak and strong co-use relationships when identifying groups.
+
+A common measure for evaluating community structure is modularity, which compares the observed connections within communities with the connections expected under a network with a similar structure but without the same community organization [10]. For a weighted network, modularity can be expressed as
+
+\[
+Q =
+\frac{1}{2W}
+\sum_{i,j}
+\left[
+w_{ij}
+-
+\frac{s_i s_j}{2W}
+\right]
+\delta(c_i,c_j),
+\]
+
+where $w_{ij}$ is the weight of the connection between nodes $i$ and $j$, $s_i$ and $s_j$ are the strengths of the two nodes, and $2W$ is the sum of all edge weights in the network. The function $\delta(c_i,c_j)$ equals 1 when nodes $i$ and $j$ belong to the same community and 0 otherwise.
+
+In the context of this study, a detected community represents a group of cloud platforms with relatively strong or dense co-use relationships. For example, if several platforms are frequently reported together and have stronger relationships with each other than with platforms outside the group, they may form the same community.
+
+Community detection can therefore provide a broader view of the cloud-platform ecosystem by showing whether the network contains distinct groups of related platforms. These groups can then be examined to identify possible patterns in how cloud technologies are used together.
+\subsubsection{Shortest-Path Metrics}
+
+Shortest-path metrics describe the distance between nodes based on the shortest route connecting them [11]. In this study, these metrics can be used to examine how closely cloud platforms are connected within the co-use network.
+
+In an unweighted network, the shortest-path distance between two nodes $i$ and $j$ is denoted by
+
+\[
+d(i,j),
+\]
+
+where $d(i,j)$ represents the minimum number of edges required to connect the two nodes. In the context of cloud-platform co-use, a small distance between two platforms indicates that they are either directly connected or linked through only a small number of intermediate platforms.
+
+For a connected network, the overall connectivity can also be described using the average shortest-path length [11],
+
+\[
+L =
+\frac{1}{n(n-1)}
+\sum_{i \neq j} d(i,j),
+\]
+
+where $n$ is the number of nodes in the network. A smaller average shortest-path length indicates that cloud platforms are generally separated by fewer connections, while a larger value suggests greater separation between different parts of the network.
+
+Another related measure is the network diameter [11], defined as
+
+\[
+D = \max_{i,j} d(i,j),
+\]
+
+which represents the longest shortest-path distance between any two connected nodes. In this study, the diameter can provide an indication of the maximum structural separation between cloud platforms in the co-use network.
+
+When shortest paths are calculated on a weighted network, the interpretation of the edge weights must also be considered [8]. In this study, a larger edge weight represents stronger co-use rather than greater distance. Therefore, if weighted shortest paths are used, the co-use weights must be transformed into distance values so that stronger relationships correspond to shorter distances.
+
+Together, shortest-path metrics provide a network-level view of how closely connected the cloud-platform ecosystem is. They complement centrality measures, which describe the positions of individual platforms, and community detection, which examines groups of strongly connected platforms.
+}
+
+
+
+
+\section{Results}
+
+\subsection{Centrality}
+%Faigah
+
+\subsection{Community}
+%Haitham
+
+\subsection{Shortest path}
+%Nuha
+
+\begin{thebibliography}{9}
+
+\bibitem{}
+B. Ghimire and N. Gupta, “Programming Language Co-Usage Patterns on Stack Overflow: Analysis of the Developer Ecosystem,” arXiv preprint arXiv:2604.12123, 2026.
+\bibitem{}
+Stack Overflow, “2024 Stack Overflow Developer Survey,” 2024. [Online]. Available: Stack Overflow Developer Survey 2024. [Accessed: Oct. 3, 2026]
+\bibitem{}
+B. Martens, J. Poeppelbuss, and F. Teuteberg, “Understanding the Cloud Computing Ecosystem: Results from a Quantitative Content Analysis,” in Proc. Wirtschaftsinformatik 2011, Zurich, Switzerland, Feb. 16–18, 2011.
+\bibitem{}
+R. Magoulas and S. Swoyer, “Cloud Adoption in 2020,” O’Reilly Radar, May 19, 2020. [Online]. Available: https://www.oreilly.com/radar/cloud-adoption-in-2020
+\bibitem{}
+K. G. Hartman, SANS 2023 Multicloud Survey: Navigating the Complexities of Multiple Clouds. SANS Institute, Dec. 2023.
+\bibitem{}
+T. Oliveira, M. Thomas, and M. Espadanal, “Assessing the determinants of cloud computing adoption: An analysis of the manufacturing and services sectors,” Information & Management, vol. 51, no. 5, pp. 497–510, 2014, doi: 10.1016/j.im.2014.03.006.     1-s2.0-S0378720614000391-main
+\bibitem{}
+B. Fabian, A. Baumann, and J. Lackner, “Topological analysis of cloud service connectivity,” Computers & Industrial Engineering, vol. 88, pp. 151–165, 2015, doi: 10.1016/j.cie.2015.06.009.
+\bibitem{}
+T. Opsahl, F. Agneessens, and J. Skvoretz,
+``Node centrality in weighted networks: Generalizing degree and shortest paths,''
+\textit{Social Networks},
+vol. 32, no. 3, pp. 245--251, 2010.
+\bibitem{}
+L. C. Freeman,
+``Centrality in social networks: Conceptual clarification,''
+\textit{Social Networks},
+vol. 1, no. 3, pp. 215--239, 1979.
+
+\bibitem{}
+M. E. J. Newman and M. Girvan,
+``Finding and evaluating community structure in networks,''
+\textit{Physical Review E},
+vol. 69, no. 2, p. 026113, 2004.
+
+\bibitem{}
+M. E. J. Newman,
+\textit{Networks: An Introduction}.
+Oxford, U.K.: Oxford University Press, 2010.
+
+\end{thebibliography}
+
+
+\end{document}
+
+
+
+
+

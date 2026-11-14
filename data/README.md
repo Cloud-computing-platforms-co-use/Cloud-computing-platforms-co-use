@@ -2,8 +2,8 @@
 
 ## Official surveys
 
-- 2024: https://survey.stackoverflow.co/2024/ (download the developer survey CSV archive and extract `results-2024.csv`)
-- 2025: https://survey.stackoverflow.co/2025/ (intended future comparison; **not processed in this repository**)
+- 2024: https://survey.stackoverflow.co/2024/ 
+- 2025: https://survey.stackoverflow.co/2025/ 
 
 The original large survey files are **not** committed. The 2024 file is approximately 160 MB and exceeds GitHub's 100 MB single-file limit. Do not commit any personal respondent-level survey files. Follow each survey's data terms and license.
 

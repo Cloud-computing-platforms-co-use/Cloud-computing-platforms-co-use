@@ -2,12 +2,11 @@
 
 **Project:** Cloud Computing Platforms Co-Use: A Network Analysis of the Stack Overflow Developer Survey
 
-**Course:** Cloud Platforms Co-Use team research project (course code to be added)  
-**Contributors:** Haitham; Nuha; Faiqa (verify spellings/full names before submission)
+
 
 ## Overview
 
-This project examines how respondents to the Stack Overflow Developer Survey report using cloud platforms together. It creates a weighted, undirected co-use network, identifies central platforms and strong pairs, and uses community detection to identify groups of platforms. The current notebook reproduces the **2024** analysis; a 2024-versus-2025 comparison is planned but has not yet been incorporated.
+This project examines how respondents to the Stack Overflow Developer Survey report using cloud platforms together. It creates a weighted, undirected co-use network, identifies central platforms and strong pairs, and uses community detection to identify groups of platforms. The current notebook reproduces the **2024** .
 
 ## Research questions
 
@@ -93,7 +92,7 @@ cloud-platforms-couse/
 - [`docs/Results_section_draft.pdf`](docs/Results_section_draft.pdf) is only the provided 2024 Results section.
 - [`docs/source/main.tex`](docs/source/main.tex) is the supplied LaTeX source; confirm that it is the team's final version.
 - **TODO:** Add the complete `docs/report.pdf` and `docs/presentation.pdf` before submission.
-- **TODO:** Add 2025 analysis, figures and the RQ4 comparison after the team provides its files.
+
 
 ## Reproducibility status
 
